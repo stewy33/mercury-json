@@ -1,8 +1,0 @@
-/* Here is a 
-     multi line comment */
-
-/*****************/
-
-/**/
-
-{ /* Here is some JSON */ "foo" : 30 }

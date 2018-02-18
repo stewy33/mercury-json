@@ -1,18 +1,27 @@
-include Make.options
+include ../Make.options
 
 .PHONY: default
 default:
-	cd src && $(MAKE) default
+	$(MMC) --make libmercury_json
+
+.PHONY: rebuild
+rebuild:
+	$(MMC) --rebuild libmercury_json
 
 .PHONY: install
 install:
-	cd src && $(MAKE) install
+	$(MMC) --make libmercury_json.install
 
-.PHONY: runtests
-runtests:
-	cd tests && $(MAKE) runtests
+tags: $(wildcard *.m)
+	mtags $^
+
+.PHONY: clean
+clean:
+	$(MMC) --make mercury_json.clean
 
 .PHONY: realclean
 realclean:
-	cd src && $(MAKE) realclean
-	cd tests && $(MAKE) realclean
+	$(MMC) --make mercury_json.realclean
+	/bin/rm -rf Mercury
+	/bin/rm -f $(wildcard *.err) $(wildcard *.mh)
+	/bin/rm -f tags
